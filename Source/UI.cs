@@ -61,8 +61,8 @@ namespace StockpileLimit
             var limit = settings.GetStacklimit();
 
             Rect drawArea = new Rect(rect.xMin, rect.yMin - 48f - 3f - 90f, rect.width, 24f);
-            drawArea.SplitVertically(70f, out Rect labelArea, out drawArea, 5f);
-            drawArea.SplitVertically(100f, out Rect buttonArea, out drawArea, 5f);
+            drawArea.SplitVertically(70f, out Rect labelArea, out drawArea);
+            drawArea.SplitVertically(100f, out Rect buttonArea, out drawArea);
             Rect inputArea = drawArea.LeftPartPixels(50f);
             Widgets.Label(labelArea, "Set limit");
             TooltipHandler.TipRegion(labelArea, "Set an upper limit for each tile in this stockpile. The limit is strictly in effect for pawns. Pawns will not haul items exceeding the upper limit.");
@@ -82,9 +82,9 @@ namespace StockpileLimit
 
             var refillpercent = settings.GetRefillPercent();
             drawArea = new Rect(rect.xMin, rect.yMin - 48f - 3f - 60f, rect.width, 24f);
-            drawArea.SplitVertically(70f, out labelArea, out drawArea, 5f);
-            drawArea.SplitVertically(100f, out buttonArea, out drawArea, 5f);
-            drawArea.SplitVertically(50f, out inputArea, out drawArea, 5f);
+            drawArea.SplitVertically(70f, out labelArea, out drawArea);
+            drawArea.SplitVertically(100f, out buttonArea, out drawArea);
+            drawArea.SplitVertically(50f, out inputArea, out drawArea);
             Widgets.Label(labelArea, "Refill at");
             TooltipHandler.TipRegion(labelArea, "Set the refill threshold of *each tile* in this stockpile.This can be considered as the lower limit");
             if (refilltooltip.ContainsKey(refillpercent)) TooltipHandler.TipRegion(buttonArea, refilltooltip[refillpercent]);
