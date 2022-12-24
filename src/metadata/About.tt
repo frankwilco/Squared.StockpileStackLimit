@@ -28,6 +28,6 @@
       <li>ubergarm.kanbanstockpile</li>
   </incompatibleWith>
   <description>
-<#@ include file="..\README.md" #>
+<#@ include file="..\..\README.md" #>
   </description>
 </ModMetaData>
