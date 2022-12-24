@@ -236,6 +236,7 @@ _PublisherPlus.xml
 lastrun.log
 /About/
 /Assemblies/
+/src/metadata/version.txt
 
 # workshop file
 *.vdf
