@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+    <stl.limit_set.label>Set limit</stl.limit_set.label>
+    <stl.limit_set.tooltip>Set an upper limit for each tile in this stockpile. The limit is strictly in effect for pawns. Pawns will not haul items exceeding the upper limit.</stl.limit_set.tooltip>
+    <stl.limit_set.-1.label>No limit</stl.limit_set.-1.label>
+    <stl.limit_set.-1.tooltip>No limit is default, like vanilla.</stl.limit_set.-1.tooltip>
+    <stl.limit_set.0.tooltip>Keep empty, like there's no stockpile.</stl.limit_set.0.tooltip>
+
+    <stl.refill_pause.label>Pause refilling</stl.refill_pause.label>
+    <stl.refill_pause.tooltip>Disable refilling for all tiles in this stockpile.</stl.refill_pause.tooltip>
+
+    <stl.refill_at.label>Refill at</stl.refill_at.label>
+    <stl.refill_at.tooltip>Set the refill threshold of each tile in this stockpile (lower limit).</stl.refill_at.tooltip>
+    <stl.refill_at.100.label>Full</stl.refill_at.100.label>
+    <stl.refill_at.100.tooltip>Full is default. Always keep fully stocked, like vanilla.</stl.refill_at.100.tooltip>
+    <stl.refill_at.50.label>Half</stl.refill_at.50.label>
+    <stl.refill_at.0.label>Empty</stl.refill_at.0.label>
+    <stl.refill_at.0.tooltip>Start refilling when empty.</stl.refill_at.0.tooltip>
+    
+    <stl.custom>Custom</stl.custom>
+</LanguageData>
