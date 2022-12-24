@@ -30,8 +30,16 @@ namespace StockpileLimit
             [0] = "stl.refill_at.0.label".Translate()
         };
 
-        public static void Prefix(ref Rect rect)
+        private static readonly int kStorageTabMask = 8;
+
+        public static void Prefix(ref Rect rect, int openMask = 1)
         {
+            // Don't modify non-storage tabs.
+            if (openMask != kStorageTabMask)
+            {
+                return;
+            }
+
             _selected = Find.Selector.SingleSelectedObject as ISlotGroupParent;
             if (_selected != null)
             {
@@ -39,9 +47,10 @@ namespace StockpileLimit
             }
         }
 
-        public static void Postfix(ref Rect rect)
+        public static void Postfix(ref Rect rect, int openMask = 1)
         {
-            if (_selected == null)
+            // Don't modify non-storage tabs.
+            if (_selected == null || openMask != kStorageTabMask)
             {
                 return;
             }
