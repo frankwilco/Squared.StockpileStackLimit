@@ -53,7 +53,7 @@ namespace StockpileLimit
                 Event.current.Use();
             }
 
-            var settings = _selected.GetStoreSettings();
+            StorageSettings settings = _selected.GetStoreSettings();
 
             DoSetLimitRect(rect, settings);
             DoRefillAtRect(rect, settings);
@@ -62,11 +62,11 @@ namespace StockpileLimit
 
         public static void DoSetLimitRect(Rect rect, StorageSettings settings)
         {
-            int limit = settings.GetStackLimit();
+            int currentValue = settings.GetStackLimit();
 
             Rect drawArea = new Rect(rect.xMin, rect.yMin - 48f - 3f - 90f, rect.width, 24f);
-            drawArea.SplitVerticallyWithMargin(out Rect labelArea, out drawArea, out var _, 5f, 70f);
-            drawArea.SplitVerticallyWithMargin(out Rect buttonArea, out drawArea, out var _, 5f, 100f);
+            drawArea.SplitVerticallyWithMargin(out Rect labelArea, out drawArea, out float _, 5f, 70f);
+            drawArea.SplitVerticallyWithMargin(out Rect buttonArea, out drawArea, out  _, 5f, 100f);
             Rect inputArea = drawArea.LeftPartPixels(50f);
 
             Widgets.Label(
@@ -76,41 +76,42 @@ namespace StockpileLimit
                 labelArea,
                 "stl.limit_set.tooltip".Translate());
 
-            string buttonTooltipKey = $"stl.limit_set.{limit}.tooltip";
+            string buttonTooltipKey = $"stl.limit_set.{currentValue}.tooltip";
             if (buttonTooltipKey.CanTranslate())
             {
                 TooltipHandler.TipRegion(buttonArea, buttonTooltipKey.Translate());
             }
 
             string buttonLabel = _labelCustom;
-            if (_menuLimit.ContainsKey(limit))
+            if (_menuLimit.ContainsKey(currentValue))
             {
-                buttonLabel = _menuLimit[limit];
+                buttonLabel = _menuLimit[currentValue];
             }
             if (Widgets.ButtonText(buttonArea, buttonLabel))
             {
-                var options = new List<FloatMenuOption>(
+                List<FloatMenuOption> options = new List<FloatMenuOption>(
                     _menuLimit.Select(p => new FloatMenuOption(
                         p.Value, () => settings.SetStackLimitAndNotifyChange(p.Key))));
                 Find.WindowStack.Add(new FloatMenu(options));
             }
 
             _buffer = null;
-            var new_limit = limit;
-            Widgets.TextFieldNumeric(inputArea, ref new_limit, ref _buffer, -1, AdditionalStorageSettings.MaxLimit);
-            if (new_limit != limit)
+            int newValue = currentValue;
+            Widgets.TextFieldNumeric(inputArea, ref newValue, ref _buffer, -1, AdditionalStorageSettings.MaxLimit);
+            if (newValue != currentValue)
             {
-                settings.SetStackLimitAndNotifyChange(new_limit);
+                settings.SetStackLimitAndNotifyChange(newValue);
             }
         }
 
         public static void DoRefillAtRect(Rect rect, StorageSettings settings)
         {
-            var refillPercent = settings.GetRefillPercent();
+            int currentValue = settings.GetRefillPercent();
+
             Rect drawArea = new Rect(rect.xMin, rect.yMin - 48f - 3f - 60f, rect.width, 24f);
-            drawArea.SplitVerticallyWithMargin(out Rect labelArea, out drawArea, out var _, 5f, 70f);
-            drawArea.SplitVerticallyWithMargin(out Rect buttonArea, out drawArea, out var _, 5f, 100f);
-            drawArea.SplitVerticallyWithMargin(out Rect inputArea, out drawArea, out var _, 5f, 50f);
+            drawArea.SplitVerticallyWithMargin(out Rect labelArea, out drawArea, out float _, 5f, 70f);
+            drawArea.SplitVerticallyWithMargin(out Rect buttonArea, out drawArea, out float _, 5f, 100f);
+            drawArea.SplitVerticallyWithMargin(out Rect inputArea, out drawArea, out float _, 5f, 50f);
 
             Widgets.Label(
                 labelArea,
@@ -119,16 +120,16 @@ namespace StockpileLimit
                 labelArea,
                 "stl.refill_at.tooltip".Translate());
 
-            string buttonTooltipKey = $"stl.refill_at.{refillPercent}.tooltip";
+            string buttonTooltipKey = $"stl.refill_at.{currentValue}.tooltip";
             if (buttonTooltipKey.CanTranslate())
             {
                 TooltipHandler.TipRegion(buttonArea, buttonTooltipKey.Translate());
             }
 
             string buttonLabel =  _labelCustom;
-            if (_menuRefill.ContainsKey(refillPercent))
+            if (_menuRefill.ContainsKey(currentValue))
             {
-                buttonLabel = _menuRefill[refillPercent];
+                buttonLabel = _menuRefill[currentValue];
             }
             if (Widgets.ButtonText(buttonArea, buttonLabel))
             {
@@ -139,11 +140,11 @@ namespace StockpileLimit
             }
 
             _buffer = null;
-            var new_refillpercent = refillPercent;
-            Widgets.TextFieldNumeric(inputArea, ref new_refillpercent, ref _buffer, 0, 100);
-            if (new_refillpercent != refillPercent)
+            int newValue = currentValue;
+            Widgets.TextFieldNumeric(inputArea, ref newValue, ref _buffer, 0, 100);
+            if (newValue != currentValue)
             {
-                settings.SetRefillPercent(new_refillpercent);
+                settings.SetRefillPercent(newValue);
             }
 
             Widgets.Label(drawArea, "%");
@@ -151,9 +152,10 @@ namespace StockpileLimit
 
         public static void DoPauseRefillRect(Rect rect, StorageSettings settings)
         {
+            bool currentValue = settings.IsRefillingDisabled();
+            bool newValue = currentValue;
+
             Rect drawArea = new Rect(rect.xMin, rect.yMin - 48f - 3f - 30f, rect.width, 24f);
-            var checkOn = settings.IsRefillingDisabled();
-            var new_checkOn = checkOn;
 
             TooltipHandler.TipRegion(
                 drawArea,
@@ -161,12 +163,12 @@ namespace StockpileLimit
             Widgets.CheckboxLabeled(
                 drawArea,
                 "stl.refill_pause.label".Translate(),
-                ref new_checkOn,
+                ref newValue,
                 placeCheckboxNearText: true);
 
-            if (new_checkOn != checkOn)
+            if (newValue != currentValue)
             {
-                if (new_checkOn)
+                if (newValue)
                 {
                     settings.SetRefillingDisabled();
                 }
