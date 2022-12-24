@@ -18,4 +18,7 @@
     <stl.refill_at.0.tooltip>Start refilling when empty.</stl.refill_at.0.tooltip>
     
     <stl.custom>Custom</stl.custom>
+    
+    <stl.options.set_all_buffer.label>Set all small stockpile as buffer stockpile</stl.options.set_all_buffer.label>
+    <stl.options.set_all_buffer.tooltip>For each stockpile with less than 5 tiles in the current map, set its refill threshold to 0, that is, refill when empty.</stl.options.set_all_buffer.tooltip>
 </LanguageData>

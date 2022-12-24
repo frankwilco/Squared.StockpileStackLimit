@@ -23,8 +23,11 @@ namespace StockpileLimit
         public override void DoSettingsWindowContents(Rect inRect)
         {
             Rect buttonArea = new Rect(inRect.x, inRect.y, 300f, 24f);
-            if (Widgets.ButtonText(buttonArea, "Set all small stockpile as buffer stockpile")) SetAllBuffer();
-            TooltipHandler.TipRegion(buttonArea, "For each stockpile with less than 5 tiles in the current map, set its refill threshod to 0, that is, refill when empty");
+            if (Widgets.ButtonText(buttonArea, "stl.options.set_all_buffer.label".Translate()))
+            {
+                SetAllBuffer();
+            }
+            TooltipHandler.TipRegion(buttonArea, "stl.options.set_all_buffer.tooltip".Translate());
         }
         public static void SetAllBuffer()
         {
