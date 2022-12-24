@@ -2,9 +2,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
     <name>Stockpile Limit</name>
-    <packageId>darkside.StockpileLimit</packageId>
-    <author>darkside</author>
-    <url>https://github.com/waingt/StockpileStackLimitRemade</url>
+    <packageId>frankwilco.ng.stockpilelimit</packageId>
+    <author>FrankWilco</author>
+    <url>https://github.com/fofajardo/NGStockpileStackLimit</url>
     <supportedVersions>
         <li>1.4</li>
     </supportedVersions>
@@ -22,6 +22,7 @@
         <li>longwater.smartstockpilecreation</li>
     </loadAfter>
     <incompatibleWith>
+        <li>darkside.StockpileLimit</li>
         <li>Mlie.StockpileStackLimit</li>
         <li>ryder.SatisfiedStorage</li>
         <li>Cozarkian.VarietyMatters.Stockpile</li>
