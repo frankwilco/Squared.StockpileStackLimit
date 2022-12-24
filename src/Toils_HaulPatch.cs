@@ -34,7 +34,7 @@ namespace StockpileLimit
         {
             var map = this_.pawn.MapHeld;
             var limit = AdditionalStorageSettings.CalculateStackLimit(map, dropLoc);
-            if (limit < AdditionalStorageSettings.max_limit)
+            if (limit < AdditionalStorageSettings.MaxLimit)
             {
                 var carried_thing = this_.CarriedThing;
                 int count = map.thingGrid.ThingAt(dropLoc, carried_thing.def)?.stackCount ?? 0;

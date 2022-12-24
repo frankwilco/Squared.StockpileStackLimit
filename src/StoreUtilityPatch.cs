@@ -24,7 +24,7 @@ namespace StockpileLimit
             var slotgroup = c.GetSlotGroup(map);
             if (slotgroup == null) return result;
             var setting = slotgroup.Settings;
-            var limit = setting.GetStacklimit();
+            var limit = setting.GetStackLimit();
             var refillpercent = setting.GetRefillPercent();
             if (setting.IsRefillingDisabled() || limit == 0) return false;
             if (limit < 0)

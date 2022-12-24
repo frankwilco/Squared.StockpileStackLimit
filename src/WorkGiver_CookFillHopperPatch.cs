@@ -19,7 +19,7 @@ namespace StockpileLimit
             if (!(thing is ISlotGroupParent hopperSgp)) return false;
 
             var setting = hopperSgp.GetStoreSettings();
-            var limit = setting.GetStacklimit();
+            var limit = setting.GetStackLimit();
             if (setting.IsRefillingDisabled() || limit == 0) return false;
 
             foreach (var thing2 in pawn.Map.thingGrid.ThingsListAt(thing.Position))

@@ -11,7 +11,7 @@ namespace StockpileLimit
 
         public static void Postfix(StorageSettings s)
         {
-            clipboardLimit = s.GetStacklimit();
+            clipboardLimit = s.GetStackLimit();
             refillpercent = s.GetRefillPercent();
         }
     }
@@ -21,7 +21,7 @@ namespace StockpileLimit
     {
         public static void Postfix(StorageSettings s)
         {
-            s.SetStacklimitAndNotifyChange(CopyPatch.clipboardLimit);
+            s.SetStackLimitAndNotifyChange(CopyPatch.clipboardLimit);
             s.SetRefillPercent(CopyPatch.refillpercent);
         }
     }

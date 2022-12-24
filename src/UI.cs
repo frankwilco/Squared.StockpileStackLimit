@@ -58,7 +58,7 @@ namespace StockpileLimit
             }
 
             var settings = selected.GetStoreSettings();
-            var limit = settings.GetStacklimit();
+            var limit = settings.GetStackLimit();
 
             Rect drawArea = new Rect(rect.xMin, rect.yMin - 48f - 3f - 90f, rect.width, 24f);
             drawArea.SplitVerticallyWithMargin(out Rect labelArea, out drawArea, out var _, 5f, 70f);
@@ -70,14 +70,14 @@ namespace StockpileLimit
             if (Widgets.ButtonText(buttonArea, limitmenu.ContainsKey(limit) ? limitmenu[limit] : otherlimit_text))
             {
                 var options = new List<FloatMenuOption>(limitmenu.Select(p => new FloatMenuOption(p.Value, () =>
-                settings.SetStacklimitAndNotifyChange(p.Key))));
+                settings.SetStackLimitAndNotifyChange(p.Key))));
                 Find.WindowStack.Add(new FloatMenu(options));
             }
             //if (prev_settings != settings)
             buffer = null;
             var new_limit = limit;
-            Widgets.TextFieldNumeric(inputArea, ref new_limit, ref buffer, -1, AdditionalStorageSettings.max_limit);
-            if (new_limit != limit) settings.SetStacklimitAndNotifyChange(new_limit);
+            Widgets.TextFieldNumeric(inputArea, ref new_limit, ref buffer, -1, AdditionalStorageSettings.MaxLimit);
+            if (new_limit != limit) settings.SetStackLimitAndNotifyChange(new_limit);
             //prev_settings = settings;
 
             var refillpercent = settings.GetRefillPercent();
