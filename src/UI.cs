@@ -103,7 +103,7 @@ namespace StockpileLimit
             drawArea = new Rect(rect.xMin, rect.yMin - 48f - 3f - 30f, rect.width, 24f);
             var checkOn = settings.IsRefillingDisabled();
             var new_checkOn = checkOn;
-            TooltipHandler.TipRegion(drawArea, "Temporarily disable refilling for all tiles in this stockpile. It is just a handy functionality, not a part of storage settings.");
+            TooltipHandler.TipRegion(drawArea, "Disable refilling for all tiles in this stockpile.");
             Widgets.CheckboxLabeled(drawArea, "Pause refilling", ref new_checkOn, placeCheckboxNearText: true);
             if (new_checkOn != checkOn)
             {

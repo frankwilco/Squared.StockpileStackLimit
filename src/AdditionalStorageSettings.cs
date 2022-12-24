@@ -24,6 +24,7 @@ namespace StockpileLimit
         {
             int limit;
             int refillPercent;
+            bool refillingDisabled;
 
             switch (Scribe.mode)
             {
@@ -38,6 +39,11 @@ namespace StockpileLimit
                     {
                         Scribe.saver.WriteElement("refillpercent", refillPercent.ToString());
                     }
+                    refillingDisabled = __instance.IsRefillingDisabled();
+                    if (refillingDisabled)
+                    {
+                        Scribe.saver.WriteElement("refillingdisabled", refillingDisabled.ToString());
+                    }
                     break;
                 case LoadSaveMode.LoadingVars:
                     limit = ScribeExtractor.ValueFromNode(
@@ -48,6 +54,13 @@ namespace StockpileLimit
                         Scribe.loader.curXmlParent["refillpercent"],
                         RefillFull);
                     __instance.SetRefillPercent(refillPercent);
+                    refillingDisabled = ScribeExtractor.ValueFromNode(
+                        Scribe.loader.curXmlParent["refillingdisabled"],
+                        false);
+                    if (refillingDisabled)
+                    {
+                        __instance.SetRefillingDisabled();
+                    }
                     break;
                 default:
                     break;
