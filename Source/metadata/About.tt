@@ -2,7 +2,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
     <name>Stockpile Limit</name>
-    <packageId>frankwilco.ng.stockpilelimit</packageId>
+    <packageId>io.frankwilco.ng.stockpilelimit</packageId>
     <author>FrankWilco</author>
     <url>https://github.com/fofajardo/NGStockpileStackLimit</url>
     <supportedVersions>
