@@ -1,7 +1,7 @@
 <#@ output extension=".xml" #>
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-    <name>Stockpile Limit</name>
+    <name>Squared: Stockpile Limit</name>
     <packageId>io.frankwilco.ng.stockpilelimit</packageId>
     <author>FrankWilco</author>
     <url>https://github.com/fofajardo/NGStockpileStackLimit</url>
